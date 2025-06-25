@@ -1,14 +1,15 @@
 'use client';
+import Sidebar from "@/components/ui/Sidebar";
 import StudentDashboardPage from "./components/Table";
+import { useSidebar } from "@/contexts/SidebarProvider";
 
 export default function DashboardPage() {
-  return (
-    <div>
-      {/* <header className="">Student Dashboard Header</header> */}
-      <main className="">
+  const { setTitle } = useSidebar();
+  setTitle("Dashboard");
+  return (      
+        <Sidebar>
           <StudentDashboardPage />
-      </main>
-    </div>
+        </Sidebar>
   );
 }
 

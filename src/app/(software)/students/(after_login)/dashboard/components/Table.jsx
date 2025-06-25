@@ -1,40 +1,17 @@
 'use client';
 
 import { useState } from 'react';
-import { Search, Bell, User, CalendarDays, ClipboardList, BookOpen, Clock, Image, FileText, Megaphone, Book, CalendarCheck2, Video, Calculator, ChevronDown } from 'lucide-react';
+import { Search, Bell, User, CalendarDays, ClipboardList, BookOpen, Clock, Image, FileText, Megaphone, Book, CalendarCheck2, Video, Calculator, ChevronDown, LogOut } from 'lucide-react';
 
 export default function StudentDashboardPage() {
+
     return (
         <div className="flex min-h-screen bg-[#f9f5ff] font-sans">
-            {/* Sidebar */}
-            <aside className="w-64 bg-white shadow-lg p-5">
-                <h2 className="text-2xl font-bold mb-6 text-black">Edulearn</h2>
-                <nav className="space-y-4 text-sm">
-                    {[
-                        { icon: <User size={16} />, label: 'Dashboard' },
-                        { icon: <ClipboardList size={16} />, label: 'Assignment' },
-                        { icon: <BookOpen size={16} />, label: 'Reports' },
-                        { icon: <Book size={16} />, label: 'Courses' },
-                        { icon: <Clock size={16} />, label: 'Timetable' },
-                        { icon: <Image size={16} />, label: 'Gallery' },
-                        { icon: <FileText size={16} />, label: 'Lecture Notes' },
-                        { icon: <Megaphone size={16} />, label: 'Notices' },
-                        { icon: <Book size={16} />, label: 'Library' },
-                        { icon: <CalendarCheck2 size={16} />, label: 'Leaves' },
-                        { icon: <Video size={16} />, label: 'Meetings' }
-                    ].map((item, idx) => (
-                        <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item.label === 'Dashboard' ? 'bg-purple-100 text-purple-600 border-l-4 font-medium' : 'text-gray-700'}`}>
-                            {item.icon}
-                            {item.label}
-                        </div>
-                    ))}
-                </nav>
-            </aside>
-
+            
             {/* Main Content */}
             <div className="flex-1 p-6">
                 {/* Header */}
-                <div className="flex items-center justify-between">
+                {/* <div className="flex items-center justify-between">
                     <h1 className="text-2xl font-bold text-purple-600">Dashboard</h1>
                     <div className="flex items-center gap-4">
                         <div className="relative">
@@ -45,10 +22,10 @@ export default function StudentDashboardPage() {
                         <img src="/profileImage.png" alt="avatar" className="rounded-full w-8 h-8" />
                         <ChevronDown className='h-5 w-5 text-gray-600' />
                     </div>
-                </div>
+                </div> */}
 
                 {/* Stats Boxes */}
-                <div className="grid grid-cols-4 gap-4 mt-6">
+                <div className="grid grid-cols-4 gap-4">
                     {[
                         { label: 'Attendance', value: '85%', icon: <User size={20} />, color: 'purple' },
                         { label: 'Courses', value: '6', icon: <BookOpen size={20} />, color: 'pink' },

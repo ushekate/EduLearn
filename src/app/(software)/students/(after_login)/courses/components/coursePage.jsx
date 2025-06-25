@@ -1,13 +1,12 @@
 'use client';
 
-import { Search, BookOpen, Atom, BookText, Code2, History, Play, FileText, HelpCircle, DownloadCloud, Bell, Users, User, ClipboardList, Book, Clock, Image, Megaphone, CalendarCheck2, Video, ChevronDown } from 'lucide-react';
+import { Search, BookOpen, Atom, BookText, Code2, History, Play, FileText, HelpCircle, DownloadCloud, Bell, Users, User, ClipboardList, Book, Clock, Image, Megaphone, CalendarCheck2, Video, ChevronDown, LogOut } from 'lucide-react';
 import { useState } from 'react';
 
 export default function CoursesPage() {
     const [selectedCategory, setSelectedCategory] = useState('All Courses');
 
     const categories = ['All Courses', 'CBSE', 'State Boards', 'IB', 'AP', 'University'];
-    
 
     const courses = [
         {
@@ -20,28 +19,79 @@ export default function CoursesPage() {
             title: 'Organic Chemistry', board: 'AP', lectures: 20, hours: 15, progress: 0, icon: <BookOpen />, status: 'Start Course'
         },
         {
-            title: 'World History', board: 'University', lectures: 30, hours: 20, progress: 90, icon: <History />, status: 'Continue Learning'
+            title: 'World History', board: 'University', lectures: 30, hours: 20, progress: 0, icon: <History />, status: 'Start Course'
         },
         {
             title: 'Computer Science', board: 'University', lectures: 25, hours: 18, progress: 60, icon: <Code2 />, status: 'Continue Learning'
         },
         {
-            title: 'English Literature', board: 'State Board', lectures: 22, hours: 14, progress: 0, icon: <BookText />, status: 'Start Course'
+            title: 'English Literature', board: 'State Boards', lectures: 22, hours: 14, progress: 45, icon: <BookText />, status: 'Continue Learning'
+        },
+        {
+            title: 'Biology Essentials', board: 'CBSE', lectures: 28, hours: 16, progress: 0, icon: <BookText />, status: 'Start Course'
+        },
+        {
+            title: 'Economics', board: 'State Boards', lectures: 15, hours: 10, progress: 0, icon: <BookText />, status: 'Start Course'
+        },
+        {
+            title: 'Art History', board: 'IB', lectures: 12, hours: 8, progress: 20, icon: <BookText />, status: 'Continue Learning'
         },
     ];
 
     const features = [
-        { title: 'Video Lectures', desc: 'High-quality video content with expert instructors', icon: <Play size={18} className="text-purple-600" /> },
-        { title: 'Lecture Notes', desc: 'Comprehensive notes and study materials', icon: <FileText size={18} className="text-pink-600" /> },
-        { title: 'Interactive Quizzes', desc: 'Test your knowledge with practice questions', icon: <HelpCircle size={18} className="text-purple-600" /> },
-        { title: 'Offline Access', desc: 'Download content for offline learning', icon: <DownloadCloud size={18} className="text-pink-600" /> },
+        { title: 'Video Lectures', desc: 'High-quality video content with expert instructors', icon: <Play size={40} className="text-purple-600 bg-purple-100 p-2.5 rounded" /> },
+        { title: 'Lecture Notes', desc: 'Comprehensive notes and study materials', icon: <FileText size={40} className="text-pink-600 bg-pink-100 p-2.5 rounded" /> },
+        { title: 'Interactive Quizzes', desc: 'Test your knowledge with practice questions', icon: <HelpCircle size={40} className="text-purple-600 bg-purple-100 p-2.5 rounded" /> },
+        { title: 'Offline Access', desc: 'Download content for offline learning', icon: <DownloadCloud size={40} className="text-pink-600 bg-pink-100 p-2.5 rounded" /> },
     ];
 
     return (
         <div className="flex min-h-screen bg-[#f9f5ff]">
             {/* Sidebar */}
 
-            <aside className="w-64 bg-white shadow-lg p-5">
+            <aside className="w-64 min-h-screen bg-white shadow-lg flex flex-col justify-between p-4">
+                <div>
+                    <h2 className="text-xl font-bold mb-6 text-black">Edulearn</h2>
+                    <nav className="space-y-4 text-sm">
+                        {[
+                            { icon: <User size={16} />, label: 'Dashboard' },
+                            { icon: <ClipboardList size={16} />, label: 'Assignment' },
+                            { icon: <BookOpen size={16} />, label: 'Reports' },
+                            { icon: <Book size={16} />, label: 'Courses' },
+                            { icon: <Clock size={16} />, label: 'Timetable' },
+                            { icon: <Image size={16} />, label: 'Gallery' },
+                            { icon: <FileText size={16} />, label: 'Lecture Notes' },
+                            { icon: <Megaphone size={16} />, label: 'Notices' },
+                            { icon: <Book size={16} />, label: 'Library' },
+                            { icon: <CalendarCheck2 size={16} />, label: 'Leaves' },
+                            { icon: <Video size={16} />, label: 'Meetings' }
+                        ].map((item, idx) => (
+                            <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item.label === 'Courses' ? 'bg-purple-100 text-purple-600 border-l-4 font-medium' : 'text-gray-700'}`}>
+                                {item.icon}
+                                {item.label}
+                            </div>
+                        ))}
+                    </nav>
+                </div>
+
+                {/* Profile Card */}
+                {/* <div className="flex items-center gap-3 bg-purple-100 p-2 rounded-lg mt-2">
+                    <Image
+                        src="/profileImage.png"
+                        alt="Sarah Johnson"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                    />
+                    <div className="flex-1">
+                        <p className="text-sm font-semibold text-gray-800">Sarah Johnson</p>
+                        <p className="text-xs text-gray-600">Class X-B</p>
+                    </div>
+                    <LogOut size={16} className="text-purple-600" />
+                </div> */}
+            </aside>
+
+            {/* <aside className="w-64 bg-white shadow-lg p-5">
                 <h2 className="text-2xl font-bold mb-6 text-black">Edulearn</h2>
                 <nav className="space-y-4 text-sm">
                     {[
@@ -63,7 +113,7 @@ export default function CoursesPage() {
                         </div>
                     ))}
                 </nav>
-            </aside>
+            </aside> */}
 
 
             {/* Main Content */}

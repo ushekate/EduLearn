@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Clock, UploadCloud, Link as LinkIcon, Code2, Database, ShieldCheck, Bell, Search, User, ClipboardList, BookOpen, Book, FileText, Megaphone, CalendarCheck2, Video, Image, ChevronDown } from 'lucide-react';
+import { Clock, UploadCloud, Link as LinkIcon, Code2, Database, ShieldCheck, Bell, Search, User, ClipboardList, BookOpen, Book, FileText, Megaphone, CalendarCheck2, Video, Image, ChevronDown, LogOut } from 'lucide-react';
 
 export default function AssignmentPage() {
   const [activeTab, setActiveTab] = useState('Pending');
@@ -41,29 +41,32 @@ export default function AssignmentPage() {
   return (
     <div className="flex min-h-screen bg-[#f9f5ff] font-sans">
       {/* Sidebar */}
-      <aside className="w-64 bg-white shadow-lg p-5">
-        <h2 className="text-2xl font-bold mb-6 text-black">Edulearn</h2>
-        <nav className="space-y-4 text-sm">
-          {[
-            { icon: <User size={16} />, label: 'Dashboard' },
-            { icon: <ClipboardList size={16} />, label: 'Assignment' },
-            { icon: <BookOpen size={16} />, label: 'Reports' },
-            { icon: <Book size={16} />, label: 'Courses' },
-            { icon: <Clock size={16} />, label: 'Timetable' },
-            { icon: <Image size={16} />, label: 'Gallery' },
-            { icon: <FileText size={16} />, label: 'Lecture Notes' },
-            { icon: <Megaphone size={16} />, label: 'Notices' },
-            { icon: <Book size={16} />, label: 'Library' },
-            { icon: <CalendarCheck2 size={16} />, label: 'Leaves' },
-            { icon: <Video size={16} />, label: 'Meetings' }
-          ].map((item, idx) => (
-            <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item.label === 'Assignment' ? 'bg-purple-100 text-purple-600 border-l-4 font-medium' : 'text-gray-700'}`}>
-              {item.icon}
-              {item.label}
-            </div>
-          ))}
-        </nav>
-      </aside>
+      {/* <aside className="w-64 min-h-screen bg-white shadow-lg flex flex-col justify-between p-4">
+        <div>
+          <h2 className="text-xl font-bold mb-6 text-black">Edulearn</h2>
+          <nav className="space-y-4 text-sm">
+            {[
+              { icon: <User size={16} />, label: 'Dashboard' },
+              { icon: <ClipboardList size={16} />, label: 'Assignment' },
+              { icon: <BookOpen size={16} />, label: 'Reports' },
+              { icon: <Book size={16} />, label: 'Courses' },
+              { icon: <Clock size={16} />, label: 'Timetable' },
+              { icon: <Image size={16} />, label: 'Gallery' },
+              { icon: <FileText size={16} />, label: 'Lecture Notes' },
+              { icon: <Megaphone size={16} />, label: 'Notices' },
+              { icon: <Book size={16} />, label: 'Library' },
+              { icon: <CalendarCheck2 size={16} />, label: 'Leaves' },
+              { icon: <Video size={16} />, label: 'Meetings' }
+            ].map((item, idx) => (
+              <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item.label === 'Assignment' ? 'bg-purple-100 text-purple-600 border-l-4 font-medium' : 'text-gray-700'}`}>
+                {item.icon}
+                {item.label}
+              </div>
+            ))}
+          </nav>
+        </div>
+
+      </aside> */}
 
 
       {/* Main Content */}
