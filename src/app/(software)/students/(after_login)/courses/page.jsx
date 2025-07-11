@@ -1,11 +1,19 @@
+'use client';
+import { useSidebar } from "@/contexts/SidebarProvider";
 import CoursesPage from "./components/coursePage";
+import Sidebar from "@/components/ui/Sidebar";
+import { useEffect } from "react";
 
 
 export default function Page() {
+    const { setTitle } = useSidebar();
+    useEffect(() => {
+        setTitle("Courses");
+      }, [setTitle]);
     return (
-        <section>
+        // <Sidebar>
             <CoursesPage />
-        </section>
+        // </Sidebar>
     );
 }
 

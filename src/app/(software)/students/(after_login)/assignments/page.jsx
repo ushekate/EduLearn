@@ -1,15 +1,18 @@
 'use client';
 import { useSidebar } from "@/contexts/SidebarProvider";
-import StudentAssignmentPage from "./components/Table";
+import StudentAssignmentPage from "./components/AssignmentPage";
 import Sidebar from "@/components/ui/Sidebar";
+import { useEffect } from "react";
 
 
 export default function AssignmentPage() {
     const { setTitle } = useSidebar();
-    setTitle("Assignments");
+    useEffect(() => {
+        setTitle("Assignments");
+    }, [setTitle]);
     return (
-        <Sidebar>
+        // <Sidebar>
             <StudentAssignmentPage />
-        </Sidebar>
+        // </Sidebar>
     );
 }

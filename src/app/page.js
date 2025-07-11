@@ -8,12 +8,12 @@ export default function Home() {
   const router = useRouter();
   const [progress, setProgress] = useState(0);
 
+  // Increment progress
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(interval);
-          router.push('/students/login'); // Redirect to the login page
+          clearInterval(interval); 
           return 100;
         }
         return prev + 1;
@@ -21,7 +21,14 @@ export default function Home() {
     }, 10);
 
     return () => clearInterval(interval);
-  }, [router]);
+  }, []);
+
+  // Navigate when progress completes
+  useEffect(() => {
+    if (progress >= 100) {
+      router.push("/landingPage");
+    }
+  }, [progress, router]);
 
   return (
     <main className="element flex flex-col gap-4 w-full h-screen items-center justify-center">
@@ -44,7 +51,3 @@ export default function Home() {
     </main>
   );
 }
-
-
-
-
