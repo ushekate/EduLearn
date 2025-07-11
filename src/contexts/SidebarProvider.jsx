@@ -6,11 +6,12 @@ const SidebarContext = createContext();
 export const SidebarProvider = ({ children }) => {
 	const [open, setOpen] = useState(true);
 	const [title, setTitle] = useState('');
+	const [access, setAccess] = useState('students'); // Optional: default to 'students'
 
 	return (
-		<SidebarContext.Provider value={{ open, setOpen, title, setTitle }}>
+		<SidebarContext.Provider value={{ open, setOpen, title, setTitle, access, setAccess }}>
 			{children}
-		</SidebarContext.Provider >
+		</SidebarContext.Provider>
 	);
 }
 
@@ -21,6 +22,8 @@ export const useSidebar = () => {
 	}
 	return context;
 };
+
+
 
 
 

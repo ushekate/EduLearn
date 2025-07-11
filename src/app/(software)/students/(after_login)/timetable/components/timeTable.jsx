@@ -1,149 +1,215 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { Calendar, Video, User, Search, Bell, PlusCircle, Users, ClipboardList, BookOpen, Book, Clock, Image, FileText, Megaphone, CalendarCheck2, ChevronDown } from 'lucide-react';
+import { useEffect, useState } from "react";
+import pbstudent from '@/lib/db';
+import * as Lucide from 'lucide-react';
+import { Calendar, Clock, Clipboard, MessageCircle, BookOpen, Calculator, ClipboardList, Mic } from "lucide-react";
+import { FaChalkboardTeacher } from "react-icons/fa";
 
 export default function TimeTablePage() {
-    const [timetableData, setTimetableData] = useState([]);
+  const [view, setView] = useState("daily");
+  const [dailyTimetable, setDailyTimetable] = useState([]);
+  const [writtenExams, setWrittenExams] = useState([]);
+  const [oralExams, setOralExams] = useState([]);
+  const [todayStr, setTodayStr] = useState("");
 
-    useEffect(() => {
-        // Fetch or simulate data dynamically
-        async function fetchTimetable() {
-            // Simulating API response
-            const data = await Promise.resolve([
-                { day: 'Monday', time: '09:00 AM - 10:00 AM', subject: 'Mathematics', teacher: 'Mrs. Sharma', room: 'R-201', type: 'online' },
-                { day: 'Monday', time: '10:15 AM - 11:15 AM', subject: 'Science', teacher: 'Mr. Verma', room: 'R-202', type: 'online' },
-                { day: 'Tuesday', time: '09:00 AM - 10:00 AM', subject: 'English', teacher: 'Mrs. Meena', room: 'R-201', type: 'online' },
-                { day: 'Tuesday', time: '10:15 AM - 11:15 AM', subject: 'History', teacher: 'Mr. Gupta', room: 'R-203', type: 'online' },
-                { day: 'Wednesday', time: '09:00 AM - 10:00 AM', subject: 'Mathematics', teacher: 'Mrs. Sharma', room: 'R-201', type: 'online' },
-                { day: 'Wednesday', time: '10:15 AM - 11:15 AM', subject: 'Science', teacher: 'Mr. Verma', room: 'R-202', type: 'online' },
-                { day: 'Wednesday', time: '11:30 AM - 12:30 PM', subject: 'Computer Science', teacher: 'Mrs. Khanna', room: 'Lab-101', type: 'online' },
-                { day: 'Thursday', time: '09:00 AM - 10:00 AM', subject: 'English', teacher: 'Mrs. Meena', room: 'R-201', type: 'online' },
-                { day: 'Thursday', time: '10:15 AM - 11:15 AM', subject: 'Geography', teacher: 'Mr. Singh', room: 'R-204', type: 'online' },
-                { day: 'Friday', time: '09:00 AM - 10:00 AM', subject: 'Mathematics', teacher: 'Mrs. Sharma', room: 'R-201', type: 'online' },
-                { day: 'Friday', time: '10:15 AM - 11:15 AM', subject: 'Physical Education', teacher: 'Mr. Kumar', room: 'Playground', type: 'offline' },
-            ]);
-            setTimetableData(data);
-        }
-        fetchTimetable();
-    }, []);
+  useEffect(() => {
+    const now = new Date();
+    const formatted = now.toLocaleDateString('en-GB', {
+      // weekday: 'long',
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+    setTodayStr(`Today: ${formatted}`);
+  }, []);
 
-    return (
-        <div className="flex min-h-screen bg-[#f9f5ff]">
-            <aside className="w-64 bg-white shadow-lg p-5">
-                <h2 className="text-2xl font-bold mb-6 text-black">Edulearn</h2>
-                <nav className="space-y-4 text-sm">
-                    {[
-                        { icon: <User size={16} />, label: 'Dashboard' },
-                        { icon: <ClipboardList size={16} />, label: 'Assignment' },
-                        { icon: <BookOpen size={16} />, label: 'Reports' },
-                        { icon: <Book size={16} />, label: 'Courses' },
-                        { icon: <Clock size={16} />, label: 'Timetable' },
-                        { icon: <Image size={16} />, label: 'Gallery' },
-                        { icon: <FileText size={16} />, label: 'Lecture Notes' },
-                        { icon: <Megaphone size={16} />, label: 'Notices' },
-                        { icon: <Book size={16} />, label: 'Library' },
-                        { icon: <CalendarCheck2 size={16} />, label: 'Leaves' },
-                        { icon: <Video size={16} />, label: 'Meetings' }
-                    ].map((item, idx) => (
-                        <div key={idx} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item.label === 'Timetable' ? 'bg-purple-100 text-purple-600 border-l-4 font-medium' : 'text-gray-700'}`}>
-                            {item.icon}
-                            {item.label}
-                        </div>
-                    ))}
-                </nav>
-            </aside>
+  const fetchData = async () => {
+    const [daily, written, oral] = await Promise.all([
+      pbstudent.collection('daily_timetable').getFullList({ sort: 'time' }),
+      pbstudent.collection('written_exams').getFullList({ sort: 'date' }),
+      pbstudent.collection('oral_exams').getFullList({ sort: 'date' })
+    ]);
+    setDailyTimetable(daily);
+    setWrittenExams(written);
+    setOralExams(oral);
+  };
 
-            {/* <aside className="w-64 bg-white shadow-lg p-5">
-        <h2 className="text-2xl font-bold mb-6 text-purple-600">EduPanel</h2>
-        <nav className="space-y-4 text-sm">
-          {['Dashboard', 'Assignments', 'Reports', 'Courses', 'Timetable', 'Gallery', 'Lecture Notes', 'Notices', 'Library', 'Leaves', 'Meetings'].map((item) => (
-            <div key={item} className={`flex items-center gap-2 p-2 rounded-lg cursor-pointer hover:bg-purple-100 ${item === 'Timetable' ? 'bg-purple-100 text-purple-600 font-medium' : 'text-gray-700'}`}>
-              <span className="w-4 h-4 bg-gray-300 rounded-full"></span>
-              {item}
-            </div>
-          ))}
-        </nav>
-        <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between p-3 bg-purple-100 text-purple-700 rounded-lg text-xs">
-          <img src="https://i.pravatar.cc/40" alt="avatar" className="w-8 h-8 rounded-full" />
-          <div>
-            <p>Sarah Johnson</p>
-            <p className="text-gray-600">Class X-B</p>
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const getIcon = (iconName) => {
+    const Icon = Lucide[iconName] || Lucide.BookOpen;
+    return <Icon size={30} className="bg-foreground/20 text-foreground p-1 rounded-full" />;
+  };
+
+  return (
+    <div className="flex flex-col min-h-screen bg-[var(--background)]">
+      <div className="p-6 font-sans">
+        <div className="flex items-center justify-between bg-white rounded p-2 mb-4">
+
+          <h1 className="flex text-lg font-bold text-foreground">
+            <Calendar className="mr-2" />
+            {view === 'daily' ? todayStr : 'Exam Timetable'}
+          </h1>
+
+          <div className="space-x-2">
+            <button
+              className={`px-4 py-1 rounded-md ${view === "daily" ? "bg-foreground text-white" : "bg-light-primary/20 text-black border"}`}
+              onClick={() => setView("daily")}
+            >
+              Daily
+            </button>
+            <button
+              className={`px-4 py-1 rounded-md ${view === "exam" ? "bg-foreground text-white" : "bg-light-primary/20 text-black border"}`}
+              onClick={() => setView("exam")}
+            >
+              Exam Timetable
+            </button>
           </div>
         </div>
-      </aside> */}
 
-            <div className="flex-1 p-6">
-                {/* Header */}
-                <div className="flex items-center justify-between">
-                    <div>
-                        <h1 className="text-2xl font-bold text-purple-600">Dashboard</h1>
-                        <p className='text-sm text-gray-500'>Check your scheduled classes and subjects for the week.</p>
-                    </div>
-                    <div className="flex items-center gap-4">
-                        <div className="relative">
-                            <input type="text" placeholder="Search Dashboard..." className="pl-10 pr-4 py-2 rounded-lg border border-gray-400 text-gray-500 text-sm" />
-                            <Search className="absolute left-3 top-2.5 h-4 w-4 text-gray-500" />
-                        </div>
-                        <Bell className="h-5 w-5 text-gray-600" />
-                        <img src="/profileImage.png" alt="avatar" className="rounded-full w-8 h-8" />
-                        <ChevronDown className='h-5 w-5 text-gray-600' />
-                    </div>
-                </div>
+        {view === "daily" ? (
+          <table className="w-full rounded-2xl text-left bg-white shadow-md">
+            <thead className="bg-foreground text-white">
+              <tr>
+                <th className="px-4 py-2">
+                  <div className="flex items-center">
+                    <Clock size={18} className="mr-2" />
+                    Time
+                  </div>
+                </th>
+                <th className="px-4 py-2">
+                  <div className="flex items-center">
+                    <FaChalkboardTeacher size={18} className="mr-2 mt-1" />
+                    Subject & Teacher
+                  </div>
+                </th>
+                <th className="px-4 py-2">
+                  <div className="flex items-center">
+                    <Clipboard size={18} className="mr-2" />
+                    Notes
+                  </div>
+                </th>
+                <th className="px-4 py-2">
+                  <div className="flex items-center">
+                    <MessageCircle size={18} className="mr-2" />
+                    Remarks
+                  </div>
+                </th>
+              </tr>
 
-            <div className="flex items-center justify-between mt-6">
-                <div className="flex gap-2">
-                    {['Week', 'Month', 'Year'].map((label) => (
-                        <button key={label} className={`px-4 py-1 text-sm rounded-full ${label === 'Week' ? 'bg-purple-600 text-white' : 'bg-white border text-gray-600'}`}>{label}</button>
-                    ))}
-                </div>
-                <div className="flex items-center gap-2 text-sm">
-                    <button className="flex items-center gap-1 px-3 py-1 rounded bg-white border text-gray-600"><span>&lt;</span> <span>June 23 - 29, 2025</span> <Calendar size={14} /> <span>&gt;</span></button>
-                    <button className="bg-purple-100 text-purple-600 px-3 py-1 rounded">Today</button>
-                    <button className="bg-purple-500 hover:bg-purple-600 text-white text-sm px-3 py-1 rounded flex items-center gap-1"><PlusCircle size={14} /> Add Class</button>
-                </div>
+            </thead>
+            <tbody className="text-black">
+              {dailyTimetable.map((item, idx) => (
+                <tr key={idx} className="border border-light-primary hover:bg-light-primary/10">
+                  <td className="px-4 py-2">{item.time}</td>
+                  <td className="px-4 py-2">
+                    <div className="flex items-center space-x-2">
+                      {getIcon(item.icon)}
+                      <div>
+                        <strong>{item.subject}</strong>
+                        {item.teacher && <div className="text-sm text-light-primary">{item.teacher}</div>}
+                      </div>
+                    </div>
+                  </td>
+                  <td className="px-4 py-2">{item.notes}</td>
+                  <td className="px-4 py-2">{item.remarks}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <div className="space-y-6">
+            {/* Written Exams */}
+            <div>
+              <h2 className="text-lg font-semibold text-primary flex items-center mb-2">
+                <ClipboardList className="w-4 h-4 mr-2" />Written Exams
+              </h2>
+              <table className="w-full bg-white rounded-2xl shadow-sm">
+                <thead className="bg-foreground text-white">
+                  <tr>
+                    <th className="px-4 py-2"><Calendar className="inline-block mr-2" />Date</th>
+                    <th className="px-4 py-2"><Clock className="inline-block mr-2" />Time</th>
+                    <th className="px-4 py-2"><BookOpen className="inline-block mr-2" />Subject</th>
+                    <th className="px-4 py-2"><Calculator className="inline-block mr-2" />Total Marks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {writtenExams.map((exam, idx) => (
+                    <tr key={idx} className="border-t text-black border-light-primary hover:bg-light-primary/10">
+                      {/* <td className="px-[7%] py-2">{exam.date}</td> */}
+                      <td className="px-[6%] py-2">
+                        {new Date(exam.date).toLocaleDateString('en-US', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
+                      </td>
+                      <td className="px-[5%] py-2">{exam.time}</td>
+                      <td className="px-[6%] py-2">{exam.subject}</td>
+                      <td className="px-[13%] py-2">{exam.marks}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
-            <div className="mt-4 bg-white rounded-xl shadow overflow-x-auto">
-                <table className="min-w-full text-sm text-left">
-                    <thead className="text-gray-600 border-b">
-                        <tr>
-                            <th className="py-3 px-4">Day</th>
-                            <th className="py-3 px-4">Time Slot</th>
-                            <th className="py-3 px-4">Subject</th>
-                            <th className="py-3 px-4">Teacher</th>
-                            <th className="py-3 px-4">Room</th>
-                            <th className="py-3 px-4">Join Link</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {timetableData.map((row, idx) => (
-                            <tr key={idx} className="border-b hover:bg-gray-50">
-                                <td className="py-2 px-4 font-medium text-gray-700">{row.day}</td>
-                                <td className="py-2 px-4 text-gray-600">{row.time}</td>
-                                <td className="py-2 px-4 text-gray-600">{row.subject}</td>
-                                <td className="py-2 px-4 text-gray-600">{row.teacher}</td>
-                                <td className="py-2 px-4 text-gray-600">{row.room}</td>
-                                <td className="py-2 px-4">
-                                    {row.type === 'online' ? (
-                                        <button className="flex items-center gap-1 bg-purple-500 text-white text-xs px-3 py-1 rounded-full">
-                                            <Video size={14} /> Join
-                                        </button>
-                                    ) : (
-                                        <span className="flex items-center gap-1 bg-gray-100 text-gray-700 text-xs px-3 py-1 rounded-full">
-                                            <Users size={14} /> In-person
-                                        </span>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+            {/* Oral Exams */}
+            <div>
+              <h2 className="text-lg font-semibold text-primary flex items-center mb-2">
+                <Mic className="w-4 h-4 mr-2" />Oral Exams
+              </h2>
+              <table className="w-full bg-white rounded-2xl shadow-sm">
+                <thead className="bg-foreground text-white">
+                  <tr>
+                    <th className="px-4 py-2"><Calendar className="inline-block mr-2" />Date</th>
+                    <th className="px-4 py-2"><Clock className="inline-block mr-2" />Time</th>
+                    <th className="px-4 py-2"><BookOpen className="inline-block mr-2" />Subject</th>
+                    <th className="px-4 py-2"><Calculator className="inline-block mr-2" />Total Marks</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {oralExams.map((exam, idx) => (
+                    <tr key={idx} className="border-t text-black border-light-primary hover:bg-light-primary/10">
+                      {/* <td className="px-[7%] py-2">{exam.date}</td> */}
+                      <td className="px-[6%] py-2">
+                        {new Date(exam.date).toLocaleDateString('en-US', {
+                          day: 'numeric',
+                          month: 'short',
+                          year: 'numeric',
+                        })}
+                      </td>
+                      <td className="px-[5%] py-2">{exam.time}</td>
+                      <td className="px-[6%] py-2">{exam.subject}</td>
+                      <td className="px-[13%] py-2">{exam.marks}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
 
-            <div className="mt-6 text-sm font-medium text-gray-600">Upcoming Classes</div>
-        </div>
-    </div >
+            <div className="bg-white p-4 rounded-md shadow-sm text-sm text-light-primary">
+              <div className="flex mb-3 gap-2">
+                <div className="rounded-full h-8 w-8 p-1.5 bg-foreground">
+                  <Lucide.Pin size={20} className="text-white fill-white" />
+                </div>
+                <h1 className="text-black font-bold text-xl">Notes</h1>
+              </div>
+              <ul className="list-disc pl-5 space-y-1">
+                <li>Please arrive 15 minutes early for all exams</li>
+                <li>Carry your ID card for verification</li>
+                <li>No electronic devices allowed in the examination hall</li>
+                <li>Bring all necessary stationery items</li>
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
   );
 }
+
+
 

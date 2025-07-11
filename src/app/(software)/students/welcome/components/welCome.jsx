@@ -33,7 +33,7 @@ export default function Welcome() {
                             <div><Building size={30} className='mt-2' /></div>
                             <div className="">
                                 <p>Institution:</p>
-                                <p className='text-xl font-bold'>EduTech Learning Institute</p>
+                                <p className='text-xl font-medium'>EduTech Learning Institute</p>
                             </div>
                         </div>
 
@@ -41,7 +41,7 @@ export default function Welcome() {
                             <div><Mail size={30} className='mt-2' /></div>
                             <div className="">
                                 <p>Contact:</p>
-                                <p className='text-xl font-bold'>support@edutech.com</p>
+                                <p className='text-xl font-medium'>support@edutech.com</p>
                             </div>
                         </div>
                     </div>

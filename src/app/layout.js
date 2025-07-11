@@ -1,7 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider } from "@/contexts/SidebarProvider";
-// import Sidebar from "@/components/ui/Sidebar";
+import ChatBot from "@/components/utils/Chatbot";
+import { AuthContextProvider } from "@/contexts/AuthContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,15 +19,18 @@ export const metadata = {
   description: "Learning made easy!",
 };
 
-export default function RootLayout({ children }) {
+export default function MainRootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-background-dark`}
       >
-        <SidebarProvider>
-        {children}
-        </SidebarProvider>
+          {/* <SidebarProvider> */}
+          <AuthContextProvider>
+            {children}
+          </AuthContextProvider>
+          {/* </SidebarProvider> */}
+          <ChatBot />
       </body>
     </html>
   );

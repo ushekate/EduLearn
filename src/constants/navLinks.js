@@ -1,4 +1,4 @@
-import { Album, ArrowDown, Bell, Book, BookOpen, Boxes, CalendarCheck2, ClipboardList, Clock, CreditCard, FastForward, FileSearch2, FileText, LayoutDashboard, LayoutGrid, MailQuestion, MapPinned, Megaphone, Package, Receipt, ReceiptText, Scale, Scan, Truck, UploadIcon, User } from "lucide-react";
+import { Album, ArrowDown, BarChart, Bell, Book, BookDashed, BookOpen, Boxes, Calendar, CalendarCheck2, CircleUserRound, ClipboardList, Clock, Cog, CreditCard, FastForward, FileSearch2, FileText, LayoutDashboard, LayoutGrid, MailQuestion, MapPinned, Megaphone, Package, Receipt, ReceiptText, Scale, Scan, Truck, UploadIcon, User, Users } from "lucide-react";
 
 export const navLinks = [
 	{
@@ -56,7 +56,7 @@ export const navLinks = [
 		access: 'students',
 	 },
 	 {
-		label: "Leaves",
+		label: "Leave Request",
 		href: "/students/leaves",
 		icon: CalendarCheck2,
 		access: 'students',
@@ -64,8 +64,76 @@ export const navLinks = [
 	{
 		label: "Meetings",
 		href: "/students/meetings",
-		icon: CreditCard,
+		icon: Users,
 		access: 'students',
 	},
+	{
+		label: "Settings",
+		href: "/students/settings",
+		icon: Cog,
+		access: 'students',
+	},
+	{
+		label: "Events",
+		href: "/students/events",
+		icon: Calendar,
+		access: 'students',
+	},
+
+	// Teacher Links
+  {
+    label: 'Dashboard',
+    href: '/teachers/dashboard',
+    icon: LayoutDashboard,
+    access: 'teachers',
+  },
+  {
+    label: 'My Courses',
+    href: '/teachers/myCourses',
+    icon: ClipboardList,
+    access: 'teachers',
+  },
+  {
+    label: 'My Students',
+    href: '/teachers/myStudents',
+    icon: FileText,
+    access: 'teachers',
+  },
+  {
+    label: 'Assignments',
+    href: '/teachers/assignments',
+    icon: CalendarCheck2,
+    access: 'teachers',
+  },
+//   {
+//     label: 'Schedule',
+//     href: '/teachers/schedule',
+//     icon: BarChart,
+//     access: 'teachers',
+//   },
+//   {
+//     label: 'Gradebook',
+//     href: '/teachers/gradebook',
+//     icon: BookDashed,
+//     access: 'teachers',
+//   },
+//   {
+//     label: 'Messages',
+//     href: '/teachers/messages',
+//     icon: CircleUserRound,
+//     access: 'teachers',
+//   },
+//   {
+//     label: 'Reports',
+//     href: '/teachers/reports',
+//     icon: ReceiptText,
+//     access: 'teachers',
+//   },
+//   {
+//     label: 'Settings',
+//     href: '/teachers/settings',
+//     icon: Cog,
+//     access: 'teachers',
+//   },
 
 ]
