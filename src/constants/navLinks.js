@@ -31,7 +31,7 @@ export const navLinks = [
 		icon: Clock,
 		access: 'students',
 	},
-	{ 
+	{
 		label: "Gallery",
 		href: "/students/gallery",
 		icon: Package,
@@ -43,19 +43,19 @@ export const navLinks = [
 		icon: FileText,
 		access: 'students',
 	},
-	{ 
+	{
 		label: "Notices",
 		href: "/students/notices",
 		icon: Megaphone,
 		access: 'students',
-	 },
-	{ 
+	},
+	{
 		label: "Library",
 		href: "/students/library",
 		icon: Book,
 		access: 'students',
-	 },
-	 {
+	},
+	{
 		label: "Leave Request",
 		href: "/students/leaves",
 		icon: CalendarCheck2,
@@ -81,59 +81,59 @@ export const navLinks = [
 	},
 
 	// Teacher Links
-  {
-    label: 'Dashboard',
-    href: '/teachers/dashboard',
-    icon: LayoutDashboard,
-    access: 'teachers',
-  },
-  {
-    label: 'My Courses',
-    href: '/teachers/myCourses',
-    icon: ClipboardList,
-    access: 'teachers',
-  },
-  {
-    label: 'My Students',
-    href: '/teachers/myStudents',
-    icon: FileText,
-    access: 'teachers',
-  },
-  {
-    label: 'Assignments',
-    href: '/teachers/assignments',
-    icon: CalendarCheck2,
-    access: 'teachers',
-  },
-//   {
-//     label: 'Schedule',
-//     href: '/teachers/schedule',
-//     icon: BarChart,
-//     access: 'teachers',
-//   },
-//   {
-//     label: 'Gradebook',
-//     href: '/teachers/gradebook',
-//     icon: BookDashed,
-//     access: 'teachers',
-//   },
-//   {
-//     label: 'Messages',
-//     href: '/teachers/messages',
-//     icon: CircleUserRound,
-//     access: 'teachers',
-//   },
-//   {
-//     label: 'Reports',
-//     href: '/teachers/reports',
-//     icon: ReceiptText,
-//     access: 'teachers',
-//   },
-//   {
-//     label: 'Settings',
-//     href: '/teachers/settings',
-//     icon: Cog,
-//     access: 'teachers',
-//   },
+	{
+		label: 'Dashboard',
+		href: '/teachers/dashboard',
+		icon: LayoutDashboard,
+		access: 'teachers',
+	},
+	{
+		label: 'My Courses',
+		href: '/teachers/myCourses',
+		icon: ClipboardList,
+		access: 'teachers',
+	},
+	{
+		label: 'My Students',
+		href: '/teachers/myStudents',
+		icon: FileText,
+		access: 'teachers',
+	},
+	{
+		label: 'Assignments',
+		href: '/teachers/assignments',
+		icon: CalendarCheck2,
+		access: 'teachers',
+	},
+	{
+		label: 'Schedule',
+		href: '/teachers/schedule',
+		icon: BarChart,
+		access: 'teachers',
+	},
+	{
+		label: 'Gradebook',
+		href: '/teachers/gradebook',
+		icon: Book,
+		access: 'teachers',
+	},
+	//   {
+	//     label: 'Messages',
+	//     href: '/teachers/messages',
+	//     icon: CircleUserRound,
+	//     access: 'teachers',
+	//   },
+	//   {
+	//     label: 'Reports',
+	//     href: '/teachers/reports',
+	//     icon: ReceiptText,
+	//     access: 'teachers',
+	//   },
+	//   {
+	//     label: 'Settings',
+	//     href: '/teachers/settings',
+	//     icon: Cog,
+	//     access: 'teachers',
+	//   },
 
 ]
