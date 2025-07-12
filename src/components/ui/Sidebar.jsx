@@ -31,20 +31,20 @@ export default function Sidebar({
     const currentPath = usePathname();
     const router = useRouter();
     const [user, setUser] = useState(null);
-    const { theme, setTheme } = useTheme();
+    // const { theme, setTheme } = useTheme();
 
-    const menuItems = [
-        { icon: <User className='text-white' />, text: "Dashboard" },
-        { icon: <ClipboardList className='text-white' />, text: "Assignments" },
-        { icon: <Book className='text-white' />, text: "Courses" },
-        { icon: <BookOpen className='text-white' />, text: "Reports" },
-        { icon: <Clock className='text-white' />, text: "Timetable" },
-        { icon: <Image className='text-white' />, text: "Gallery" },
-        { text: "Lecture Notes", icon: <FileText className='text-white' /> },
-        { text: "Notices", icon: <Megaphone className='text-white' /> },
-        { text: "Library", icon: <Book className='text-white' /> },
-        { text: "Leaves", icon: <CalendarCheck2 className='text-white' /> },
-    ];
+    // const menuItems = [
+    //     { icon: <User className='text-white' />, text: "Dashboard" },
+    //     { icon: <ClipboardList className='text-white' />, text: "Assignments" },
+    //     { icon: <Book className='text-white' />, text: "Courses" },
+    //     { icon: <BookOpen className='text-white' />, text: "Reports" },
+    //     { icon: <Clock className='text-white' />, text: "Timetable" },
+    //     { icon: <Image className='text-white' />, text: "Gallery" },
+    //     { text: "Lecture Notes", icon: <FileText className='text-white' /> },
+    //     { text: "Notices", icon: <Megaphone className='text-white' /> },
+    //     { text: "Library", icon: <Book className='text-white' /> },
+    //     { text: "Leaves", icon: <CalendarCheck2 className='text-white' /> },
+    // ];
 
     useEffect(() => {
         const fetchUser = async () => {

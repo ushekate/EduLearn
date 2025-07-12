@@ -5,7 +5,7 @@ import { X } from 'lucide-react';
 
 const courses = ['Mathematics', 'Science', 'English'];
 const modes = ['Online', 'Offline', 'Hybrid'];
-const repeats = ['Never', 'Daily', 'Weekly'];
+const repeats = ['Daily', 'Weekly'];
 
 export default function ClassModal({ onClose }) {
   const [formData, setFormData] = useState({
@@ -16,7 +16,7 @@ export default function ClassModal({ onClose }) {
     duration: '',
     mode: 'Online',
     location: '',
-    repeat: 'Never',
+    repeat: '',
     notes: '',
   });
 
