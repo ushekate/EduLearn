@@ -1,88 +1,3 @@
-// 'use client';
-
-// import { useState } from 'react';
-// import { Eye, EyeOff } from 'lucide-react';
-
-// export default function TeachersLogin() {
-//   const [showPassword, setShowPassword] = useState(false);
-
-//   return (
-//     <div className="min-h-screen bg-gradient-to-br from-purple-400 to-purple-600 p-4">
-//       <div className="bg-white rounded-lg shadow-lg flex items-center justify-center  flex-col md:flex-row w-full max-w-lg overflow-hidden">
-//         {/* Left Login Form */}
-//         <div className="w-full p-8 space-y-6">
-//           <div>
-//             <h2 className="text-2xl font-bold text-gray-800">Welcome Back</h2>
-//             <p className="text-sm text-gray-600">Sign in to access your teaching dashboard</p>
-//           </div>
-
-//           <div className="space-y-4">
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Email or Username</label>
-//               <input
-//                 type="text"
-//                 placeholder="Enter your email or username"
-//                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
-//               />
-//             </div>
-
-//             <div>
-//               <label className="block text-sm font-medium text-gray-700">Password</label>
-//               <div className="relative">
-//                 <input
-//                   type={showPassword ? 'text' : 'password'}
-//                   placeholder="Enter your password"
-//                   className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md pr-10 focus:outline-none focus:ring-2 focus:ring-purple-500"
-//                 />
-//                 <button
-//                   type="button"
-//                   className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
-//                   onClick={() => setShowPassword(!showPassword)}
-//                 >
-//                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-//                 </button>
-//               </div>
-//             </div>
-
-//             <div className="flex items-center justify-between text-sm">
-//               <label className="flex items-center gap-2">
-//                 <input type="checkbox" className="form-checkbox" />
-//                 Remember me
-//               </label>
-//               <a href="#" className="text-purple-600 hover:underline">Forgot Password?</a>
-//             </div>
-
-//             <button className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-md transition">
-//               Log In
-//             </button>
-//           </div>
-
-//           <p className="text-sm text-center text-gray-600">
-//             Don’t have an account? <a href="#" className="text-purple-600 hover:underline">Sign Up</a>
-//           </p>
-//         </div>
-
-//         {/* Right Illustration */}
-//         {/* <div className="hidden md:flex w-1/2 bg-gradient-to-br from-purple-500 to-purple-700 text-white items-center justify-center p-8">
-//           <div className="text-center">
-//             <h2 className="text-3xl font-bold">Welcome to<br />Teacher Portal</h2>
-//             <p className="mt-2 text-sm">Login to access your account</p>
-//             <img
-//               src="/teacher-illustration.svg"
-//               alt="Teacher Illustration"
-//               className="mt-6 w-full max-w-xs mx-auto"
-//             />
-//           </div>
-//         </div> */}
-//       </div>
-//     </div>
-//   );
-// }
-
-
-
-
-
 'use client';
 import { Eye, EyeOff, X } from "lucide-react";
 import React, { useState, useEffect } from "react";
@@ -261,7 +176,7 @@ export default function TeachersLogin() {
                         </button>
 
                         <p className="text-sm text-center mt-2">
-                            Don't have an account? <a href="/students/signup" className="text-purple-600 underline">Sign Up</a>
+                            Don't have an account? <a href="/teachers/signup" className="text-purple-600 underline">Sign Up</a>
                         </p>
                     </form>
                 </div>
@@ -271,7 +186,7 @@ export default function TeachersLogin() {
             <div className="hidden md:flex flex-col justify-center items-center w-1/2 text-white px-4 pt-4">
                 <div className='p-4'>
                     <h2 className="text-6xl font-bold mb-2">Welcome to</h2>
-                    <h3 className="text-6xl font-medium mb-2">student portal</h3>
+                    <h3 className="text-6xl font-medium mb-2">Teachers portal</h3>
                     <p className="text-sm">Login to access your account</p>
                 </div>
                 <div className='flex justify-center items-center'>

@@ -22,7 +22,6 @@ export default function AssignmentPage() {
   const colorMap = {
     'Web Dev': 'bg-purple-600',
     'Database': 'bg-pink-600',
-    'Security': 'bg-blue-600',
   };
 
   useEffect(() => {
@@ -31,7 +30,12 @@ export default function AssignmentPage() {
         const results = await pbstudent.collection('assignments').getFullList({
           sort: '-due_date',
         });
+
+        // Get uploaded IDs from localStorage
+        const uploadedFromStorage = JSON.parse(localStorage.getItem('uploadedAssignments') || '{}');
+
         setAssignments(results);
+        setUploaded(uploadedFromStorage);
       } catch (error) {
         console.error("Error fetching assignments:", error);
       }
@@ -40,7 +44,7 @@ export default function AssignmentPage() {
     fetchAssignments();
   }, []);
 
-  const tabs = ['All', 'Web Dev', 'Database', 'Security', 'Marathi', 'Mathematics', 'Science', 'Social Science', 'Hindi', 'English'];
+  const tabs = ['All', 'Marathi', 'Mathematics', 'Science', 'Social Science', 'Hindi', 'English', 'Computer Science', 'Drawing'];
 
   const filteredAssignments =
     activeTab === 'All'
@@ -59,11 +63,16 @@ export default function AssignmentPage() {
 
     try {
       const formData = new FormData();
-      formData.append('doc', file); // Assuming 'doc' is the file field in the assignments collection
+      formData.append('doc', file);
+      formData.append('sub_date', new Date().toISOString());
 
-      const updated = await pbstudent.collection('assignments').update(assignmentId, formData);
+      await pbstudent.collection('assignments').update(assignmentId, formData);
 
-      setUploaded((prev) => ({ ...prev, [assignmentId]: true }));
+      // Update local state and localStorage
+      const newUploaded = { ...uploaded, [assignmentId]: true };
+      setUploaded(newUploaded);
+      localStorage.setItem('uploadedAssignments', JSON.stringify(newUploaded));
+
       alert('Upload successful!');
     } catch (err) {
       console.error('Upload error:', err);
@@ -92,17 +101,18 @@ export default function AssignmentPage() {
 
         {/* Assignment Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-          {filteredAssignments.map((item) => (
+          {filteredAssignments.map((item, index) => (
             <div key={item.id} className="bg-white rounded-xl shadow p-5">
               {/* Top */}
               <div className="flex items-center gap-3 mb-2">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${colorMap[item.subject] || 'bg-gray-500'}`}>
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center ${index % 2 === 0 ? 'bg-purple-600' : 'bg-pink-600'
+                  }`}>
                   {iconMap[item.subject] || <Code2 className="text-white" />}
                 </div>
                 <h3 className="text-base font-semibold text-black">{item.title}</h3>
               </div>
 
-              {/* Date */}
+              {/* Due Date */}
               <div className="flex items-center text-xs text-light-primary/80 mb-2">
                 <Clock size={14} className="mr-1" />
                 Due on {new Date(item.due_date).toLocaleDateString()}
@@ -111,7 +121,7 @@ export default function AssignmentPage() {
               {/* Description */}
               <p className="text-sm text-light-primary mb-3">{item.desc}</p>
 
-              {/* Resource + Marks */}
+              {/* Resources & Marks */}
               <div className="flex items-center justify-between text-sm mb-3">
                 {item.link ? (
                   <a href={item.link} target="_blank" rel="noopener noreferrer" className={`flex items-center gap-1 ${colorMap[item.subject] || 'text-primary'} text-sm`}>
@@ -135,7 +145,8 @@ export default function AssignmentPage() {
               <button
                 onClick={() => handleUploadClick(item.id)}
                 disabled={uploaded[item.id]}
-                className={`w-full ${colorMap[item.subject] || 'bg-primary'} hover:opacity-90 text-white py-2 rounded-lg text-sm flex items-center justify-center gap-2 disabled:opacity-50`}
+                className={`w-full ${index % 2 === 0 ? 'bg-purple-600' : 'bg-pink-600'
+                  } hover:opacity-90 text-white py-2 rounded-lg text-sm flex items-center justify-center gap-2 disabled:opacity-50`}
               >
                 <UploadCloud size={16} /> {uploaded[item.id] ? 'Uploaded' : 'Upload Assignment'}
               </button>
@@ -146,6 +157,3 @@ export default function AssignmentPage() {
     </div>
   );
 }
-
-
-

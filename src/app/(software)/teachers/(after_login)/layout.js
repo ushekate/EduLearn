@@ -1,3 +1,4 @@
+import ChatBot from "@/components/utils/Chatbot"
 import RootTeachersLayout from "../components/RootTeacherLayout"
 
 export default function RootLayout({ children }) {
@@ -5,6 +6,7 @@ export default function RootLayout({ children }) {
         <RootTeachersLayout>
             <main>
                 {children}
+                <ChatBot />
             </main>
         </RootTeachersLayout>
     )

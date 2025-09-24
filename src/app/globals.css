@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* @tailwind base;
+@tailwind components;
+@tailwind utilities; */
+
+
 :root {
   --background: #f0e5fb;
   --foreground: #8B5CF6;
@@ -24,8 +29,30 @@
 }
 
 .element{
-  background-image: linear-gradient(to right, #8B5CF6, #E2A7C4);
+  background-image: linear-gradient(to top left, #8B5CF6, #E2A7C4);
 }
+
+.elements {
+  background-image: linear-gradient(to top left, #E2A7C4, #8B5CF6);
+}
+
+.element1 {
+  background-image: linear-gradient(to top left, #8b5cf6, #E2A7C4, #FCD34D);
+}
+
+.element2 {
+  background-image: linear-gradient(45deg, #8B5CF6, #E2A7C4, #4de5fc, #34D399);
+}
+
+.element3 {
+  background-image: linear-gradient(45deg,
+    #8B5CF6 0%,
+    #E2A7C4 30%,
+    #FCD34D 60%,
+    #34D399 100%);
+}
+
+
 
 @theme inline {
   --color-background: var(--background);

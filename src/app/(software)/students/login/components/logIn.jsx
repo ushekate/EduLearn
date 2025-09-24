@@ -100,7 +100,7 @@ export default function Login() {
             )}
 
             {/* Login Form */}
-            <div className="bg-white rounded-xl mx-4 my-10 w-[30%] max-w-5xl overflow-hidden z-0">
+            <div className="bg-white rounded-xl mx-4 my-5 sm:w-[80%] md:w-[30%] max-w-5xl overflow-hidden z-0">
                 <div className="w-full text-black shadow-2xl p-8">
                     <div className="flex items-center justify-center">
                         <h2 className="text-xl font-bold ml-2">Welcome Back</h2>

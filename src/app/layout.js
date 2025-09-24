@@ -30,7 +30,7 @@ export default function MainRootLayout({ children }) {
             {children}
           </AuthContextProvider>
           {/* </SidebarProvider> */}
-          <ChatBot />
+          {/* <ChatBot /> */}
       </body>
     </html>
   );

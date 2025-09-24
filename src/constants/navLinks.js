@@ -1,4 +1,4 @@
-import { Album, ArrowDown, BarChart, Bell, Book, BookDashed, BookOpen, Boxes, Calendar, CalendarCheck2, CircleUserRound, ClipboardList, Clock, Cog, CreditCard, FastForward, FileSearch2, FileText, LayoutDashboard, LayoutGrid, MailQuestion, MapPinned, Megaphone, Package, Receipt, ReceiptText, Scale, Scan, Truck, UploadIcon, User, Users } from "lucide-react";
+import { Album, ArrowDown, BarChart, Bell, Book, BookDashed, BookOpen, Boxes, Calendar, CalendarCheck2, ChartNoAxesColumnIncreasing, CircleUserRound, ClipboardList, Clock, Cog, CreditCard, FastForward, FileSearch2, FileText, LayoutDashboard, LayoutGrid, MailQuestion, MapPinned, Megaphone, Package, Receipt, ReceiptText, Scale, Scan, SquareChartGantt, Truck, UploadIcon, User, Users } from "lucide-react";
 
 export const navLinks = [
 	{
@@ -108,13 +108,25 @@ export const navLinks = [
 	{
 		label: 'Schedule',
 		href: '/teachers/schedule',
-		icon: BarChart,
+		icon: SquareChartGantt ,
 		access: 'teachers',
 	},
 	{
 		label: 'Gradebook',
 		href: '/teachers/gradebook',
 		icon: Book,
+		access: 'teachers',
+	},
+	{
+		label : 'Attendance',
+		href: '/teachers/attendance',
+		icon: BarChart ,
+		access: 'teachers',
+	},
+	{
+		label : 'Study Material',
+		href : '/teachers/studyMaterial',
+		icon: BookDashed,
 		access: 'teachers',
 	},
 	//   {

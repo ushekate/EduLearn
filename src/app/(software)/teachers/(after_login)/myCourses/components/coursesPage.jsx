@@ -11,7 +11,6 @@ import { Input } from "@/components/ui/Input";
 import { Dialog, DialogContent, DialogTrigger, DialogTitle } from "@/components/ui/Dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select";
 import { Progress } from "@/components/ui/Progress";
-// import Link from 'next/link';
 import pbstudent from '@/lib/db';
 
 export default function CoursesPage() {
@@ -128,7 +127,6 @@ export default function CoursesPage() {
             <h1 className="text-3xl p-2 font-bold text-foreground">All Courses</h1>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline">📥 Import Template</Button>
 
             <Dialog>
               <DialogTrigger asChild>

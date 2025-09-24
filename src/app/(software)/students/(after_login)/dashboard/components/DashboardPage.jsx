@@ -39,7 +39,7 @@ export default function StudentDashboardPage() {
       join: 'Join',
     },
     {
-      title: 'Mathematics',
+      title: 'Java',
       time: '11:00 AM - 12:30 PM',
       color: 'pink',
       icon: <Calculator />,

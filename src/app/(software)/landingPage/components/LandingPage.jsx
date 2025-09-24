@@ -2,7 +2,11 @@
 
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
-import { BookOpen, GraduationCap, User, Users } from 'lucide-react';
+import { BookOpen, GraduationCap, User, Users, Video, FileText, Award } from 'lucide-react';
+import QuoteCarousel from './QuoteCarousel';
+import Navbar from '@/app/components/header/navbar';
+import Footer from '@/app/components/Bottom/footer';
+
 
 export default function Home() {
   const [showLoginDropdown, setShowLoginDropdown] = useState(false);
@@ -19,57 +23,59 @@ export default function Home() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const blogPosts = [
+    {
+      title: '5 Study Hacks to Ace Online Learning',
+      description: 'Boost your productivity and focus while studying remotely.',
+    },
+    {
+      title: 'Top Programming Languages to Learn in 2025',
+      description: 'Stay ahead in tech by mastering the most in-demand skills.',
+    },
+    {
+      title: 'How EduLearn Students Landed Jobs at Google & Amazon',
+      description: 'Read inspiring success stories of our top achievers.',
+    },
+    {
+      title: 'Balancing School & Online Courses: A Parent’s Guide',
+      description: 'Tips for parents to support their child’s learning journey.',
+    },
+  ];
+
+  const resources = [
+    {
+      title: 'Video Tutorials',
+      icon: <Video className="w-6 h-6 text-blue-600" />,
+      description: 'Step-by-step learning through visual content.',
+    },
+    {
+      title: 'eBooks & PDFs',
+      icon: <FileText className="w-6 h-6 text-green-600" />,
+      description: 'Downloadable study material and reference guides.',
+    },
+    {
+      title: 'Industry News',
+      icon: <BookOpen className="w-6 h-6 text-orange-600" />,
+      description: 'Stay updated with the latest trends and developments.',
+    },
+    {
+      title: 'Success Stories',
+      icon: <Award className="w-6 h-6 text-yellow-600" />,
+      description: 'Get inspired by real stories from EduLearn students.',
+    },
+  ];
+
   return (
-    <main className="element min-h-screen text-white font-sans">
-      {/* Header */}
-      <header className="flex justify-between items-center px-10 py-6 relative">
-        <div className="text-2xl font-bold">
-          <span className="flex gap-2 items-center text-black">
-            <GraduationCap size={40} className="fill-black" /> EduLearn
-          </span>
-        </div>
-        <nav className="hidden md:flex gap-8 text-sm font-medium">
-          <a href="#" className="text-lime-300 border-b-2 border-lime-300 pb-1">Home</a>
-          <a href="#">Programs</a>
-          <a href="#">Mentors</a>
-          <a href="#">Pricing</a>
-          <a href="#">Contact</a>
-        </nav>
-
-        {/* Login Button with Dropdown */}
-        <div className="relative" ref={dropdownRef}>
-          <button
-            onClick={() => setShowLoginDropdown(prev => !prev)}
-            className="bg-black text-white flex items-center gap-2 px-4 py-2 rounded-full text-sm"
-          >
-            <span className="bg-lime-400 w-5 h-5 rounded-full grid place-content-center text-black">
-              <User size={18} />
-            </span>
-            Log In
-          </button>
-
-          {showLoginDropdown && (
-            <div className="absolute right-0 mt-2 w-32 bg-black text-white rounded-md shadow-lg z-50 overflow-hidden">
-              <a href="/students/login" className="block px-2 py-2 text-sm hover:text-lime-400">👨‍🎓 Student Login</a>
-              <a href="/teachers/login" className="block px-2 py-2 text-sm hover:text-lime-400">👩‍🏫 Teacher Login</a>
-              <a href="/parents/login" className="block px-2 py-2 text-sm hover:text-lime-400">👨‍👩‍👧 Parents Login</a>
-            </div>
-          )}
-        </div>
-      </header>
-
+    <main className="min-h-screen text-white font-sans">
+      <div className='element1'>
+      {/* Navbar */}
+      <Navbar />
       {/* Hero Section */}
-      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-10 py-16 text-white">
+      <section className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center px-10 py-16 pb-50 text-white">
         {/* Left content */}
         <div>
           <p className="mb-2 text-sm">Your Online Learning Partner</p>
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">
-            Learn, Grow, and Achieve with <br />
-            <span className="text-lime-300">Expert</span> Guidance
-          </h1>
-          <p className="mb-6 text-sm text-white/90 max-w-lg">
-            Access high-quality courses anytime, anywhere, and take control of your learning journey with ease.
-          </p>
+          <QuoteCarousel />
 
           {/* Reviews */}
           <div className="flex items-center mt-8 space-x-4">
@@ -123,7 +129,54 @@ export default function Home() {
             </div>
           </div>
         </div>
+
       </section>
+      </div>
+      <div className="bg-gray-200 px-6 flex flex-col items-center text-center py-20 text-gray-800">
+        {/* Page Title */}
+        <section className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+            Learning Resources & Blogs
+          </h1>
+          <p className="text-lg text-gray-600">
+            Stay Updated with the Latest in Education & Technology
+          </p>
+        </section>
+
+        {/* Blog Posts */}
+        <section className="max-w-5xl mx-auto mb-16">
+          <h2 className="text-2xl font-semibold mb-6 text-black">Featured Blog Posts</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {blogPosts.map((post, index) => (
+              <div key={index} className="element2 p-6 rounded-xl shadow hover:scale-105  transition">
+                <h3 className="text-xl font-semibold text-black mb-2">{post.title}</h3>
+                <p className="text-gray-800">{post.description}</p>
+                <button className="mt-4 text-blue-600 hover:underline">Read More →</button>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Resources */}
+        <section className="max-w-5xl mx-auto">
+          <h2 className="text-2xl font-semibold mb-6 text-black">Resources</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {resources.map((resource, index) => (
+              <div
+                key={index}
+                className="flex items-start bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition"
+              >
+                <div className="mr-4">{resource.icon}</div>
+                <div>
+                  <h4 className="text-lg font-semibold">{resource.title}</h4>
+                  <p className="text-gray-600 text-sm">{resource.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
+      <Footer />
     </main>
   );
 }
